@@ -91,7 +91,9 @@ class StartGame:
         question_wanted=self.cap_entry.get()
         try:
             question_wanted=int(question_wanted)
-            if(question_wanted<=0):
+            if(question_wanted<=0 or question_wanted>200):
+                self.entry_error()
+            elif(question_wanted>200):
                 self.entry_error()
             else:
                 self.to_play(question_wanted)
@@ -103,7 +105,7 @@ class StartGame:
         """
         Change the color and text of instruction Label, also delete the invalid entry
         """
-        error_text="Please enter valid integer greater than 0"
+        error_text="Please enter valid integer greater than 0 and less than 200"
         self.cap_entry.delete(0,END)
         self.cap_error.config(text=error_text,fg="#ff0000")
         self.cap_entry.config(bg="#ffc0c0")
@@ -402,7 +404,7 @@ class Stats:
         question_answered=partner.current_question_num.get()    # get question answered
 
         # spacing and endline manually for the purpose of designing
-        rounds_played = f"Rounds played: {question_answered}   \n\n"   
+        rounds_played = f"Question_answered: {question_answered}   \n\n"   
         total_score= f"Total Point: {partner.current_point.get()}   \n\n"
 
         # correct rate
