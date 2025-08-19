@@ -3,8 +3,10 @@ from functools import partial
 import csv
 import random
 
-# get all the capital and country name from csv file
 def get_all_cap():
+    """
+    get all the capital and country name from csv file
+    """
     file = open("Capital_Quiz/country_capitals(Sheet1).csv","r")
     all_cap=list(csv.reader(file,delimiter=","))
     file.close()
@@ -13,8 +15,7 @@ def get_all_cap():
     all_cap.pop(0)
 
     return all_cap
-# call get_all_cap to get the information needed
-all_cap=get_all_cap()
+
 
 
 def question_generating():
@@ -50,21 +51,21 @@ class StartGame:
         """
         GUI for Start Game(choose number of question box)
         """
-        # frame
+        # start game frame
         self.cap_frame=Frame(padx=10,pady=10)   
         self.cap_frame.grid()
 
-        # heading
+        # start game heading
         self.cap_heading=Label(self.cap_frame,text="Capital Quiz",  
                                justify="center",font=("Arial","16","bold"),fg="#3a3a3a")    
         self.cap_heading.grid(row=0,pady=10)
 
-        # introduction sentence
+        # start game introduction sentence
         intruction="How many capital do you know?\nAre you ready to challenge yourself?"
         self.cap_intro=Label(self.cap_frame,text=intruction,font=("Arial","14"),fg="#3a3a3a")
         self.cap_intro.grid(row=1,padx=5,pady=10)
 
-        # Label to show instruction and error announcing
+        # start game Label to show instruction and error announcing
         self.cap_error=Label(self.cap_frame,font=("Arial","8"),fg="#32680B"
                              ,text="How many question you want to answer?")
         self.cap_error.grid(row=2,padx=5,pady=2)
@@ -73,12 +74,12 @@ class StartGame:
         self.entry_frame=Frame(self.cap_frame,padx=10,pady=4)
         self.entry_frame.grid(row=3)
 
-        # entry box
+        # start game entry box
         self.cap_entry=Entry(self.entry_frame,font=("Arial","20"),
                              width=11,justify="left",bg="#f8f8f8")
         self.cap_entry.grid(row=0,pady=5,column=0,padx=5)
         
-        # play button
+        # start game play button
         self.play_button=Button(self.entry_frame,fg="#ffffff",bg="#6aa84f",text="Play",font=("Arial","16","bold"),width=9,command=self.check_round)
         self.play_button.grid(row=0,pady=5,padx=5,column=1)
 
@@ -153,22 +154,22 @@ class Game_Play:
         self.play_box= Toplevel()
         self.play_box.protocol("WM_DELETE_WINDOW",root.destroy) # If user use X icon to close this box, they will close the whole thing
         
-        # frame
+        # game play frame
         self.play_frame=Frame(self.play_box)
         self.play_frame.grid(padx=10,pady=10)
         
-        # heading
+        # game play heading
         self.play_heading = Label(self.play_frame,
                                   font=("Arial","16","bold"),fg="#3a3a3a" )
         self.play_heading.grid(pady=6,padx=5,row=0)
 
-        # point announcing
+        # game play point announcing
         self.play_point = Label(self.play_frame,
                                 font=("Arial","10","bold"),fg="#3a3a3a",text=point_announce
                                 )
         self.play_point.grid(pady=2,row=1)
 
-        # question topic
+        # game play question topic
         self.play_question = Label(self.play_frame,text="",
                                 font=("Arial","15"),fg="#3a3a3a",wraplength=300)
         self.play_question.grid(row=2)
@@ -178,7 +179,7 @@ class Game_Play:
         self.ans_frame=Frame(self.play_frame)
         self.ans_frame.grid(row=3,padx=5,pady=5)
 
-        # ans buttons
+        # game play ans buttons
         self.ans_list_ref = []  # use list to refer it, so easier and more convenience
         #since all button is the same except the text, it is easier to create its button initially
         for count in range(0,4):
@@ -189,14 +190,14 @@ class Game_Play:
             self.ans_option.grid(row=int(count/2),column=int(count%2),pady=5,padx=5)
             self.ans_list_ref.append(self.ans_option)
         
-        # point rush announcement
+        # game play point rush announcement
         self.point_rush_annoucement = Label(self.play_frame,
                                             text=f"🔥 Point rush +{self.point_rush.get()} 🔥"
                                             ,font=("Arial","14","bold"),bg="#f0f0f0"    # f0f0f0 is lightest color for point rush
                                             ,fg="#cc0000", width=27)
         self.point_rush_annoucement.grid(row=4,padx=5,pady=5)
         
-        # hint stats frame. Because I wanna put these together
+        # game play hint stats frame. Because I wanna put these together
         self.hint_stats_frame = Frame(self.play_frame)
         self.hint_stats_frame.grid(pady=5,padx=5,row=6)
 
@@ -368,7 +369,7 @@ class Help:
         self.help_frame = Frame(self.help_box,bg=background)
         self.help_frame.grid()
         
-        # heading
+        # help heading
         self.help_heading = Label(self.help_frame,text="Help/Info",
                                   font=("Arial","15","bold"),
                                    fg="#3a3a3a",bg=background)
@@ -382,7 +383,7 @@ class Help:
                                    )
         self.help_text.grid(row=1,pady=2,padx=5)
 
-        # dissmiss button
+        # help dissmiss button
         self.dismiss_button = Button(self.help_frame,text="Dismiss",
                                   font=("Arial","15","bold"),
                                    fg="#ffffff",bg="#e2954c"
@@ -422,11 +423,11 @@ class Stats:
         self.stats_box = Toplevel()
         self.stats_box.protocol("WM_DELETE_WINDOW",partial(self.close_stats,partner))
 
-        # frame
+        # stats frame
         self.stats_frame = Frame(self.stats_box,bg=background)
         self.stats_frame.grid()
         
-        # heading
+        # stats heading
         self.stats_heading = Label(self.stats_frame,text="Statistics",
                                   font=("Arial","17","bold"),
                                    fg="#3a3a3a",bg=background)
@@ -440,7 +441,7 @@ class Stats:
                                    )
         self.stats_text.grid(row=1,pady=2,padx=40)
         
-        # close button
+        # stats close button
         self.close_button = Button(self.stats_frame,text="Close",
                                   font=("Arial","15","bold"),
                                    fg="#ffffff",bg="#434343"
@@ -456,6 +457,10 @@ class Stats:
         partner.buttons_state("NORMAL") # return buttons state to normal
 
 # main
+
+# call get_all_cap to get the information needed
+all_cap=get_all_cap()
+
 if __name__ == "__main__":
     root =Tk()
     root.title("Capital Quiz")
