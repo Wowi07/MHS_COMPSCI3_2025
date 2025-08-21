@@ -28,7 +28,7 @@ Bulgaria,Sofia
 Burkina Faso,Ouagadougou
 Burundi,Bujumbura
 Cambodia,Phnom Penh
-Cameroon,Yaoundé
+Cameroon,YaoundÃ©
 Canada,Ottawa
 Cape Verde,Praia
 Central African Republic,Bangui
@@ -37,7 +37,7 @@ Chile,Santiago
 China,Beijing
 Colombia,Bogota
 Comoros,Moroni
-Costa Rica,San José
+Costa Rica,San JosÃ©
 Croatia,Zagreb
 Cuba,Havana
 Cyprus,Nicosia
@@ -73,7 +73,7 @@ Guyana,Georgetown
 Haiti,Port-au-Prince
 Honduras,Tegucigalpa
 Hungary,Budapest
-Iceland,Reykjavík
+Iceland,ReykjavÃ­k
 India,New Delhi
 Indonesia,Jakarta
 Iran,Tehran
@@ -105,7 +105,7 @@ Luxembourg,Luxembourg
 Madagascar,Antananarivo
 Malawi,Lilongwe
 Malaysia,Kuala Lumpur
-Maldives,Malé
+Maldives,MalÃ©
 Mali,Bamako
 Malta,Valletta
 Marshall Islands,Majuro
@@ -136,7 +136,7 @@ Palau,Melekeok
 Palestine,East Jerusalem
 Panama,Panama City
 Papua New Guinea,Port Moresby
-Paraguay,Asunción
+Paraguay,AsunciÃ³n
 Peru,Lima
 Philippines,Manila
 Poland,Warsaw
@@ -151,7 +151,7 @@ Saint Lucia,Castries
 Saint Vincent and the Grenadines,Kingstown
 Samoa,Apia
 San Marino,San Marino
-São Tomé and Príncipe,São Tomé
+SÃ£o TomÃ© and PrÃ­ncipe,SÃ£o TomÃ©
 Saudi Arabia,Riyadh
 Senegal,Dakar
 Serbia,Belgrade
@@ -165,7 +165,7 @@ Somalia,Mogadishu
 South Africa,Pretoria
 South Sudan,Juba
 Spain,Madrid
-Sri Lanka,Sri Jayawardenapura Kotte
+Sri Lanka,Sri Jayawarde- napura Kotte
 Sudan,Khartoum
 Suriname,Paramaribo
 Sweden,Stockholm
@@ -175,7 +175,7 @@ Taiwan,Taipei
 Tajikistan,Dushanbe
 Tanzania,Dodoma
 Thailand,Bangkok
-Togo,Lomé
+Togo,LomÃ©
 Tonga,Nukualofa
 Trinidad and Tobago,Port of Spain
 Tunisia,Tunis
@@ -196,3 +196,4 @@ Vietnam,Hanoi
 Yemen,Sana'a
 Zambia,Lusaka
 Zimbabwe,Harare
+
