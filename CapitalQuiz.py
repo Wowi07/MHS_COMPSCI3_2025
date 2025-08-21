@@ -13,7 +13,6 @@ def get_all_cap():
 
     # remove first row
     all_cap.pop(0)
-
     return all_cap
 
 
@@ -42,7 +41,6 @@ def question_generating():
             print(f"answer: {item[1]}") # testing purpose
         else:
             ans_list.append([item[1],0])
-
     # choose the question, correct ans
     return ans_list , country , real_ans_index
 
@@ -80,10 +78,10 @@ class StartGame:
         self.cap_entry.grid(row=0,pady=5,column=0,padx=5)
         
         # start game play button
-        self.play_button=Button(self.entry_frame,fg="#ffffff",bg="#6aa84f",text="Play",font=("Arial","16","bold"),width=9,command=self.check_round)
+        self.play_button=Button(self.entry_frame,fg="#ffffff",bg="#6aa84f",text="Play",font=("Arial","16","bold"),width=9,command=self.check_question)
         self.play_button.grid(row=0,pady=5,padx=5,column=1)
 
-    def check_round(self):
+    def check_question(self):
         """
         Check if what user entry is valid.
         If wrong, send straight to entry error function.
@@ -115,7 +113,7 @@ class StartGame:
         """
         Leads user to Game Play
         """
-        root.withdraw() # hide get round box (not long show icon for it)
+        root.withdraw() # hide get question box (not long show icon for it)
         Game_Play(self) # call Game_Play class, send its variable as prefix partner.
 
         # Reset everything. Left no crumb XD
@@ -184,9 +182,9 @@ class Game_Play:
         #since all button is the same except the text, it is easier to create its button initially
         for count in range(0,4):
             self.ans_option=Button(self.ans_frame,
-                                   font=("Arial","12","bold"),
+                                   font=("Arial","11","bold"),
                                    fg="#3a3a3a",
-                                   bg="#b7b7b7",width=15)
+                                   bg="#b7b7b7",width=17,wraplength=150,height=2)
             self.ans_option.grid(row=int(count/2),column=int(count%2),pady=5,padx=5)
             self.ans_list_ref.append(self.ans_option)
         
@@ -204,10 +202,10 @@ class Game_Play:
         self.button_ref=[]
         # text | bg | row | column | command | width | frame it's in
         button_feature_list= [
-            ["Next Round","#1155cc",5,None,self.new_round,27,self.play_frame],
+            ["Next Question","#1155cc",5,None,self.new_question,27,self.play_frame],
             ["Help/Info","#e98e05",0,0,self.to_help,13,self.hint_stats_frame],  # row and column of help and stats in hint_stats_frame is different
-            ["Stats","#434343",0,1,self.to_stats,13,self.hint_stats_frame],     # from the next round and end game
-            ["End Game","#cc0000",7,None,self.close_play,27,self.play_frame]
+            ["Stats","#434343",0,1,self.to_stats,13,self.hint_stats_frame],     # from the next question and end game
+            ["End Quiz","#cc0000",7,None,self.close_play,27,self.play_frame]
         ]
         for item in (button_feature_list):
             self.button= Button(item[6],text=item[0],bg=item[1],
@@ -216,9 +214,9 @@ class Game_Play:
             self.button.grid(row=item[2],column=item[3],pady=2,padx=2)
             self.button_ref.append(self.button)
 
-        self.new_round()    # call new round function
+        self.new_question()    # call new question function
 
-    def new_round(self):
+    def new_question(self):
         """
         Change(config) buttons and Label base on the information taken from other functions
         """
@@ -226,8 +224,8 @@ class Game_Play:
         for item in (self.ans_list_ref):
             item.config(bg="#b7b7b7",disabledforeground="#717171")
 
-        # get the current round and update by adding 1
-        self.button_ref[0].config(state=DISABLED)   # disable next round button
+        # get the current question and update by adding 1
+        self.button_ref[0].config(state=DISABLED)   # disable next question button
         # reset the answered to False
         self.answered.set(True)
         self.buttons_state("NORMAL")
@@ -252,7 +250,6 @@ class Game_Play:
         for count,item in enumerate(self.ans_list_ref):
             item.config(text=ans_topic_list[count][0],command=partial(self.check_ans,ans_topic_list[count][1],count))
         self.play_question.config(text=question)    # put question in
-
         
     def buttons_state(self,states):
         """
@@ -268,10 +265,10 @@ class Game_Play:
                 item.config(state=NORMAL)
             # if statement to cover the boundary
             if self.answered.get(): # if they haven't answer the question
-                self.button_ref[0].config(state=DISABLED)  # if havent answer then disable next round button still
+                self.button_ref[0].config(state=DISABLED)  # if havent answer then disable next question button still
                 for item in(self.ans_list_ref): # enable other button
                     item.config(state=NORMAL)
-        # if this is the last question, then always disable the next round button
+        # if this is the last question, then always disable the next question button
         if self.current_question_num.get()==self.question_wanted:
             self.button_ref[0].config(state=DISABLED)  
 
@@ -316,7 +313,7 @@ class Game_Play:
         for item in(self.ans_list_ref):
             item.config(state=DISABLED)
 
-        # enable next round button or not (use for the final round)
+        # enable next question button or not (use for the final question)
         if self.current_question_num.get()==self.question_wanted:
             self.button_ref[0].config(state=DISABLED)
         else:
@@ -405,7 +402,7 @@ class Stats:
         question_answered=partner.current_question_num.get()    # get question answered
 
         # spacing and endline manually for the purpose of designing
-        rounds_played = f"Question_answered: {question_answered}   \n\n"   
+        questions_played = f"Question_answered: {question_answered}   \n\n"   
         total_score= f"Total Point: {partner.current_point.get()}   \n\n"
 
         # correct rate
@@ -417,7 +414,7 @@ class Stats:
 
         highest_point_rush= f"Highest point rush: +{partner.highest_streak}     \n"
         background = "#f3f3f3"
-        text=rounds_played+total_score+correct_rate+highest_point_rush  # add everything together. Only need to call this to show every value
+        text=questions_played+total_score+correct_rate+highest_point_rush  # add everything together. Only need to call this to show every value
 
         # stat box
         self.stats_box = Toplevel()
